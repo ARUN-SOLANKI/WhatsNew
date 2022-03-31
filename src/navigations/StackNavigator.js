@@ -3,6 +3,7 @@ import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from '../screens/AuthScreens/Login';
 import UserInfo from '../screens/UsersInfo';
+import ChatScreen from '../screens/ChatScreen';
 import Topnavigators from './Topnavigator';
 
 const Stack = createStackNavigator();
@@ -29,6 +30,7 @@ const StackNavigator = () => {
         }}
       />
       <Stack.Screen name="UserInfo" component={UserInfo} />
+      <Stack.Screen name="ChatScreen" component={ChatScreen} />
     </Stack.Navigator>
   );
 };

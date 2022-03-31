@@ -30,7 +30,7 @@ const Contactss = ({navigation}) => {
           },
           {
             text: 'message',
-            onPress: () => navigation.navigate('Chats'),
+            onPress: () => navigation.navigate('ChatScreen', item),
           },
           {
             text: 'info',
