@@ -37,7 +37,9 @@ const UserInfo = ({navigation, route}) => {
         <View style={{marginVertical: 10}}>
           <Text style={styles.head}>Addresss :-</Text>
           <Text style={styles.headText}>
-            {params.postalAddresses[0] ? params.postalAddresses[0] : 'unknown'}
+            {params.postalAddresses[0]?.street
+              ? params.postalAddresses[0].street
+              : 'unknown'}
           </Text>
         </View>
       </View>
