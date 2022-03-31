@@ -3,12 +3,13 @@ import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import {Button} from 'react-native-paper';
 
-const Login = () => {
+const Login = ({navigation}) => {
   const [PhnNumber, setPhnNumber] = useState('');
 
   const LonginDetails = () => {
     if (PhnNumber === '0007') {
       console.log('valid');
+      navigation.navigate('WhatsNew');
     } else {
       alert('enter valid passcode');
     }

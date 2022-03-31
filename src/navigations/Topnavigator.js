@@ -9,7 +9,22 @@ const Topnavigator = createMaterialTopTabNavigator();
 
 const Topnavigators = () => {
   return (
-    <Topnavigator.Navigator>
+    <Topnavigator.Navigator
+      screenOptions={{
+        tabBarActiveTintColor: '#fff',
+        tabBarIndicatorStyle: {
+          backgroundColor: '#fff',
+          height: 2,
+        },
+        tabBarStyle: {
+          backgroundColor: '#057ccc',
+        },
+        tabBarLabelStyle: {
+          fontSize: 14,
+          color: '#fff',
+          fontWeight: '500',
+        },
+      }}>
       <Topnavigator.Screen name="Camera" component={Camera} />
       <Topnavigator.Screen name="Chats" component={Chats} />
       <Topnavigator.Screen name="Contacts" component={Contactss} />
