@@ -2,6 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import React from 'react';
 import {createStackNavigator} from '@react-navigation/stack';
 import Login from '../screens/AuthScreens/Login';
+import UserInfo from '../screens/UsersInfo';
 import Topnavigators from './Topnavigator';
 
 const Stack = createStackNavigator();
@@ -20,8 +21,14 @@ const StackNavigator = () => {
           headerStyle: {
             backgroundColor: '#057ccc',
           },
+          headerTitleStyle: {
+            fontSize: 25,
+            fontWeight: '600',
+            letterSpacing: 3,
+          },
         }}
       />
+      <Stack.Screen name="UserInfo" component={UserInfo} />
     </Stack.Navigator>
   );
 };

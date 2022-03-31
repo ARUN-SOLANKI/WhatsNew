@@ -1,3 +1,4 @@
+import {NavigationContainer} from '@react-navigation/native';
 import React, {useContext} from 'react';
 import {
   View,
@@ -12,11 +13,11 @@ import {
 import _ from 'underscore';
 import {MyContacts} from '../../App';
 
-const Contactss = () => {
+const Contactss = ({navigation}) => {
   let {Contacts} = useContext(MyContacts);
   let sortedContacts = _.sortBy(Contacts, item => item?.displayName);
 
-  const ContactAlert = item => {
+  const ContactAlert = (item, navigation) => {
     // alert(item?.displayName, item?.phoneNumbers[0]?.number);
     try {
       Alert.alert(
@@ -29,7 +30,7 @@ const Contactss = () => {
           },
           {
             text: 'Ok',
-            // onPress: () => this.handleCameraAction()
+            onPress: () => navigation.navigate('UserInfo', item),
           },
         ],
       );
@@ -47,7 +48,7 @@ const Contactss = () => {
           return (
             <Pressable
               style={styles.contactCon}
-              onPress={() => ContactAlert(item)}>
+              onPress={() => ContactAlert(item, navigation)}>
               <View style={styles.imgCon}>
                 <View style={styles.placeholder}>
                   <Text style={styles.txt}>{item?.displayName?.charAt(0)}</Text>
