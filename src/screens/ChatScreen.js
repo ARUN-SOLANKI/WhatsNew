@@ -7,7 +7,6 @@ import {
   ScrollView,
 } from 'react-native';
 import React, {useState} from 'react';
-import KeyboardAvoidingView from 'react-native/Libraries/Components/Keyboard/KeyboardAvoidingView';
 
 const ChatScreen = () => {
   const [message, setMessage] = useState('');
@@ -19,23 +18,23 @@ const ChatScreen = () => {
     }
   };
 
-  console.log(message, msgArray, '---------------> msg arrray/.......');
+  console.log(message, msgArray, '---------------> msg array/.......');
   return (
     <View style={{flex: 1}}>
       <View
         style={{
           flex: 1,
           justifyContent: 'flex-end',
-          //   marginBottom: 20,
         }}>
-        <ScrollView>
-          {msgArray?.map(item => {
+        <ScrollView style={{flexDirection: 'column-reverse'}}>
+          {msgArray?.map((item, i) => {
             return (
               <Text
+                key={i}
                 style={{
                   backgroundColor: '#057ccc',
                   color: '#fff',
-                  marginVertical: 10,
+                  marginTop: 10,
                   fontSize: 16,
                   paddingHorizontal: 10,
                   paddingVertical: 15,
@@ -53,6 +52,7 @@ const ChatScreen = () => {
           alignItems: 'flex-end',
           justifyContent: 'space-between',
           margin: 2,
+          marginTop: 10,
         }}>
         <TextInput
           style={{
