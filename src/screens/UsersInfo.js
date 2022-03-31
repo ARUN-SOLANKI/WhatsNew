@@ -29,8 +29,8 @@ const UserInfo = ({navigation, route}) => {
         <View style={{marginVertical: 10}}>
           <Text style={styles.head}>Email Addresss :-</Text>
           <Text style={styles.headText}>
-            {params.emailAddresses[0].email
-              ? params.emailAddresses[0].email
+            {params?.emailAddresses[0]?.email
+              ? params?.emailAddresses[0]?.email
               : 'unknown'}
           </Text>
         </View>
@@ -76,6 +76,7 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: '600',
     marginVertical: 15,
+    textAlign: 'center',
   },
   Number: {
     textAlign: 'center',

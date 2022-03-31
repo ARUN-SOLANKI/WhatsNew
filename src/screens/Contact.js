@@ -29,7 +29,11 @@ const Contactss = ({navigation}) => {
             style: 'cancel',
           },
           {
-            text: 'Ok',
+            text: 'message',
+            onPress: () => navigation.navigate('Chats'),
+          },
+          {
+            text: 'info',
             onPress: () => navigation.navigate('UserInfo', item),
           },
         ],
