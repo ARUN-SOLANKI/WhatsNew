@@ -2,16 +2,16 @@ import {StyleSheet, Text, View} from 'react-native';
 import React, {useState} from 'react';
 import {TextInput} from 'react-native-gesture-handler';
 import {Button} from 'react-native-paper';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const Login = ({navigation}) => {
   const [PhnNumber, setPhnNumber] = useState('');
 
-  const LonginDetails = () => {
-    if (PhnNumber === '0007') {
-      console.log('valid');
-      navigation.navigate('WhatsNew');
+  const LonginDetails = async () => {
+    if (PhnNumber.length == 10) {
+      navigation.navigate('WhatsNew', PhnNumber);
     } else {
-      alert('enter valid passcode');
+      alert('enter valid Mobile Number');
     }
   };
   return (

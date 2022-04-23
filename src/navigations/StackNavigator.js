@@ -30,7 +30,11 @@ const StackNavigator = () => {
         }}
       />
       <Stack.Screen name="UserInfo" component={UserInfo} />
-      <Stack.Screen name="ChatScreen" component={ChatScreen} />
+      <Stack.Screen
+        name="ChatScreen"
+        component={ChatScreen}
+        options={{headerShown: false}}
+      />
     </Stack.Navigator>
   );
 };

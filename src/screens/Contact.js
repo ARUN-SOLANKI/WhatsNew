@@ -30,7 +30,23 @@ const Contactss = ({navigation}) => {
           },
           {
             text: 'message',
-            onPress: () => navigation.navigate('ChatScreen', item),
+            onPress: () => {
+              let mobNumber = item?.phoneNumbers[0]?.number.split('');
+              mobNumber = mobNumber
+                .filter(n => {
+                  if (n == '(' || n == ')' || n == '-' || n == ' ') {
+                    // console.log(n);
+                  } else {
+                    return n;
+                  }
+                })
+                .join('');
+              console.log(mobNumber, 'userinfo plist');
+              navigation.navigate('ChatScreen', {
+                item: item,
+                mobNumber: mobNumber,
+              });
+            },
           },
           {
             text: 'info',

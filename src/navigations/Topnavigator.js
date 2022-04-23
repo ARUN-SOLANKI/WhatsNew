@@ -2,7 +2,7 @@ import {StyleSheet, Text, View} from 'react-native';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
 import Contactss from '../screens/Contact';
 import Chats from '../screens/Chats';
-import Camera from '../screens/Camera';
+import {Camera} from '../screens/Camera';
 import React from 'react';
 
 const Topnavigator = createMaterialTopTabNavigator();

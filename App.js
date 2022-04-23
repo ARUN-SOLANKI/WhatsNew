@@ -4,6 +4,7 @@ import {getDeviceContacts} from './src/utills/getcontacts';
 import {NavigationContainer} from '@react-navigation/native';
 import StackNavigator from './src/navigations/StackNavigator';
 import 'react-native-gesture-handler';
+
 export const MyContacts = createContext();
 const App = () => {
   const [Contacts, setContacts] = useState([]);

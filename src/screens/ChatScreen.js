@@ -8,7 +8,7 @@ import {
 } from 'react-native';
 import React, {useState} from 'react';
 
-const ChatScreen = () => {
+const ChatScreen = ({navigation, route}) => {
   const [message, setMessage] = useState('');
   const [msgArray, setMsgArray] = useState([]);
   const sendMessage = () => {
@@ -18,9 +18,23 @@ const ChatScreen = () => {
     }
   };
 
-  console.log(message, msgArray, '---------------> msg array/.......');
+  console.log(
+    route.params.item.displayName,
+    msgArray,
+    '---------------> msg array/.......',
+  );
   return (
     <View style={{flex: 1}}>
+      <View
+        style={{
+          backgroundColor: 'red',
+          paddingVertical: 15,
+          paddingHorizontal: 10,
+        }}>
+        <Text style={{fontSize: 22, color: '#fff'}}>
+          {route.params.item.displayName}
+        </Text>
+      </View>
       <View
         style={{
           flex: 1,

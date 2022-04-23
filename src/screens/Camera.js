@@ -1,14 +1,156 @@
-import {StyleSheet, Text, View} from 'react-native';
-import React from 'react';
+import {Container} from 'native-base';
+import React, {useState} from 'react';
 
-const Camera = () => {
+import {
+  StyleSheet,
+  Text,
+  View,
+  TouchableOpacity,
+  Button,
+  Image,
+  PermissionsAndroid,
+} from 'react-native';
+
+import * as ImagePicker from 'react-native-image-picker';
+
+export const Camera = () => {
+  const [resourcePath, setResourcePath] = useState([]);
+  const launchCameras = async () => {
+    const grantedcamera = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.CAMERA,
+      {
+        title: 'App Camera Permission',
+        message: 'App needs access to your camera ',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    const grantedstorage = await PermissionsAndroid.request(
+      PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+      {
+        title: 'App Camera Permission',
+        message: 'App needs access to your camera ',
+        buttonNeutral: 'Ask Me Later',
+        buttonNegative: 'Cancel',
+        buttonPositive: 'OK',
+      },
+    );
+    if (
+      grantedcamera === PermissionsAndroid.RESULTS.GRANTED &&
+      grantedstorage === PermissionsAndroid.RESULTS.GRANTED
+    ) {
+      console.log('Camera & storage permission given');
+      var options = {
+        mediaType: 'photo', //to allow only photo to select ...no video
+        saveToPhotos: true, //to store captured photo via camera to photos or else it will be stored in temp folders and will get deleted on temp clear
+        includeBase64: false,
+      };
+      ImagePicker.launchCamera(options, response => {
+        console.log('Response Camera= ', response);
+
+        if (response.didCancel) {
+          console.log('User cancelled image picker');
+        } else if (response.error) {
+          console.log('ImagePicker Error: ', response.error);
+        } else if (response.customButton) {
+          console.log('User tapped custom button: ', response.customButton);
+          alert(response.customButton);
+        } else {
+          const source = response;
+          console.log('response', JSON.stringify(response));
+          setResourcePath([...resourcePath, response]);
+        }
+      });
+    }
+  };
+
+  const selectFile = () => {
+    var options = {
+      title: 'Select Image',
+
+      customButtons: [
+        {
+          name: 'customOptionKey',
+
+          title: 'Choose file from Custom Option',
+        },
+      ],
+
+      storageOptions: {
+        skipBackup: true,
+
+        path: 'images',
+      },
+    };
+
+    ImagePicker.launchImageLibrary(options, res => {
+      console.log('Response = ', res);
+
+      if (res.didCancel) {
+        console.log('User cancelled image picker');
+      } else if (res.error) {
+        console.log('ImagePicker Error: ', res.error);
+      } else if (res.customButton) {
+        console.log('User tapped custom button: ', res.customButton);
+
+        alert(res.customButton);
+      } else {
+        let source = res;
+        setResourcePath([...resourcePath, res]);
+      }
+    });
+  };
+
   return (
-    <View style={{flex: 1, alignItems: 'center', justifyContent: 'center'}}>
-      <Text>Camera</Text>
+    <View style={styles.container}>
+      <View style={styles.container}>
+        <TouchableOpacity onPress={selectFile} style={styles.button}>
+          <Text style={styles.buttonText}>Select File</Text>
+        </TouchableOpacity>
+        <TouchableOpacity onPress={launchCameras} style={styles.button}>
+          <Text style={styles.buttonText}>Camera</Text>
+        </TouchableOpacity>
+      </View>
     </View>
   );
+  // }
 };
 
-export default Camera;
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
 
-const styles = StyleSheet.create({});
+    padding: 30,
+
+    alignItems: 'center',
+
+    justifyContent: 'center',
+
+    backgroundColor: '#fff',
+  },
+
+  button: {
+    width: 250,
+
+    height: 60,
+
+    backgroundColor: '#3740ff',
+
+    alignItems: 'center',
+
+    justifyContent: 'center',
+
+    borderRadius: 4,
+
+    marginBottom: 12,
+  },
+
+  buttonText: {
+    textAlign: 'center',
+
+    fontSize: 15,
+
+    color: '#fff',
+  },
+});
